@@ -15,7 +15,7 @@ terraform {
 }
 
 data "azurerm_resource_group" "rg" {
-  name = "tf-ref-${var.environment}-tg"
+  name = "tf-ref-${var.environment}-rg"
 }
 
 data "azurerm_subnet" "aks" {
