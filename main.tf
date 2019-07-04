@@ -3,7 +3,7 @@ provider "azuread" {
 }
 
 provider "azurerm" {
-  version = "~> 1.30"
+  version = "~> 1.31"
 }
 
 provider "random" {
@@ -14,15 +14,14 @@ terraform {
   backend "azurerm" {}
 }
 
+data "azurerm_resource_group" "rg" {
+  name = "tf-ref-${var.environment}-tg"
+}
+
 data "azurerm_subnet" "aks" {
   name                 = "aks-subnet"
   virtual_network_name = "aks-vnet"
-  resource_group_name  = "TF-REF-${var.environment}-RG"
-}
-
-resource "azurerm_resource_group" "rg" {
-  name     = "TF-REF-${var.environment}-RG"
-  location = "${var.location}"
+  resource_group_name  = "${data.azurerm_resource_group.rg.name}"
 }
 
 resource "azuread_application" "aks" {
@@ -43,8 +42,8 @@ resource "azuread_service_principal_password" "aks" {
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "tf-ref-${var.environment}-aks"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = "${data.azurerm_resource_group.rg.location}"
+  resource_group_name = "${data.azurerm_resource_group.rg.name}"
   dns_prefix          = "tf-ref-${var.environment}-aks"
   kubernetes_version  = "${var.kubernetes_version}"
 
