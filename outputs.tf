@@ -2,14 +2,6 @@ output "resource_group_name" {
   value = "${data.azurerm_resource_group.rg.name}"
 }
 
-output "aks_service_principal_client_id" {
-  value = "${azuread_service_principal.aks.id}"
-}
-
-output "aks_service_principal_client_secret" {
-  value = "${random_uuid.aks.result}"
-}
-
 output "aks_client_key" {
   value = "${azurerm_kubernetes_cluster.aks.kube_config.0.client_key}"
 }

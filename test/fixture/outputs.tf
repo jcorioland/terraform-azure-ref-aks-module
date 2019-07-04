@@ -2,14 +2,6 @@ output "resource_group_name" {
   value = "${module.tf-ref-aks-module.resource_group_name}"
 }
 
-output "aks_service_principal_client_id" {
-  value = "${module.tf-ref-aks-module.aks_service_principal_client_id}"
-}
-
-output "aks_service_principal_client_secret" {
-  value = "${module.tf-ref-aks-module.aks_service_principal_client_secret}"
-}
-
 output "aks_client_key" {
   value = "${module.tf-ref-aks-module.aks_client_key}"
 }

@@ -6,14 +6,6 @@ provider "azurerm" {
   version = "~> 1.31"
 }
 
-provider "random" {
-  version = "~> 2.1"
-}
-
-terraform {
-  backend "azurerm" {}
-}
-
 data "azurerm_resource_group" "rg" {
   name = "tf-ref-${var.environment}-rg"
 }
@@ -22,22 +14,6 @@ data "azurerm_subnet" "aks" {
   name                 = "aks-subnet"
   virtual_network_name = "aks-vnet"
   resource_group_name  = "${data.azurerm_resource_group.rg.name}"
-}
-
-resource "azuread_application" "aks" {
-  name = "tf-ref-${var.environment}-aks-aad-application"
-}
-
-resource "azuread_service_principal" "aks" {
-  application_id = "${azuread_application.aks.application_id}"
-}
-
-resource "random_uuid" "aks" {}
-
-resource "azuread_service_principal_password" "aks" {
-  service_principal_id = "${azuread_service_principal.aks.id}"
-  value                = "${random_uuid.aks.result}"
-  end_date             = "${timeadd(timestamp(), "8760h")}"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -66,8 +42,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   service_principal {
-    client_id     = "${azuread_service_principal.aks.application_id}"
-    client_secret = "${random_uuid.aks.result}"
+    client_id     = "${var.service_principal_client_id}"
+    client_secret = "${var.service_principal_client_secret}"
   }
 
   network_profile {
@@ -83,8 +59,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 
+data "azuread_service_principal" "aks" {
+  application_id = "${var.service_principal_client_id}"
+}
+
 resource "azurerm_role_assignment" "netcontribrole" {
   scope                = "${data.azurerm_subnet.aks.id}"
   role_definition_name = "Network Contributor"
-  principal_id         = "${azuread_service_principal.aks.object_id}"
+  principal_id         = "${data.azuread_service_principal.aks.object_id}"
 }

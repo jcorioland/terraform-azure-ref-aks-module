@@ -29,3 +29,6 @@ Gemfile.lock
 
 # Local test-kitchen files.
 **/.kitchen/*
+
+# Go pkg lock file
+Gopkg.lock

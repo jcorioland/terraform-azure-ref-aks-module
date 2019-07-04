@@ -7,11 +7,13 @@ It is part of the reference archicture for Terraform on Azure. More details can 
 
 ```hcl
 module "tf-ref-aks-module" {
-  source                       = "../../"
-  environment                  = "Development"
-  location                     = "westeurope"
-  kubernetes_version           = "1.13.5"
-  ssh_public_key               = "$file('~/.ssh/id_rsa.pub')"
+  source                           = "../../"
+  environment                      = "Development"
+  location                         = "westeurope"
+  kubernetes_version               = "1.13.5"
+  ssh_public_key                   = "$file('~/.ssh/id_rsa.pub')"
+  service_principal_client_id      = "CLIENT_ID"
+  service_principal_client_secret  = "CLIENT_SECRET"
 }
 ```
 
@@ -41,21 +43,21 @@ variable "kubernetes_version" {
 variable "ssh_public_key" {
   description = "The SSH public key for AKS"
 }
+
+variable "service_principal_client_id" {
+  description = "The client id of the service principal to be used by AKS"
+}
+
+variable "service_principal_client_secret" {
+  description = "The client secret of the service principal to be used by AKS"
+}
 ```
 
 ## Outputs
 
 ```hcl
 output "resource_group_name" {
-  value = "${azurerm_resource_group.rg.name}"
-}
-
-output "aks_service_principal_client_id" {
-  value = "${azuread_service_principal.aks.id}"
-}
-
-output "aks_service_principal_client_secret" {
-  value = "${random_uuid.aks.result}"
+  value = "${data.azurerm_resource_group.rg.name}"
 }
 
 output "aks_client_key" {
@@ -85,4 +87,13 @@ output "aks_kube_config" {
 output "aks_host" {
   value = "${azurerm_kubernetes_cluster.aks.kube_config.0.host}"
 }
+```
+
+## Run tests
+
+```bash
+dep ensure
+export TF_VAR_service_principal_client_id="<CLIENT_ID>"
+export TF_VAR_service_principal_client_secret="<CLIENT_SECRET>"
+go test -v ./test/ -timeout 20m
 ```
