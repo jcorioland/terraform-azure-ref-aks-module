@@ -19,7 +19,7 @@ module "tf-ref-aks-module" {
 
 ## Scenarios
 
-It is part of the reference archicture for Terraform on Azure. More details can be found on the [main repository](https://github.com/jcorioland/terraform-azure-reference). 
+It is part of the reference architecture for Terraform on Azure. More details can be found on the [main repository](https://github.com/jcorioland/terraform-azure-reference). 
 
 ## Examples
 
