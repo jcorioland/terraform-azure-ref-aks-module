@@ -1,0 +1,126 @@
+=== RUN   TestAKSKubeConfig
+=== PAUSE TestAKSKubeConfig
+=== CONT  TestAKSKubeConfig
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 retry.go:72: terraform [init -upgrade=false]
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 command.go:87: Running command terraform with args [init -upgrade=false]
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 command.go:158: [0m[1mInitializing the backend...[0m
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:07+02:00 command.go:158: [0m[1mInitializing provider plugins...[0m
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: The following providers do not have any version constraints in configuration,
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: so the latest version was installed.
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: To prevent automatic upgrades to new major versions that may contain breaking
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: changes, it is recommended to add version = "..." constraints to the
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: corresponding provider blocks in configuration, with the constraint strings
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: suggested below.
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: * provider.azurerm: version = "~> 1.31"
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: [0m[32m
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: You may now begin working with Terraform. Try running "terraform plan" to see
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: any changes that are required for your infrastructure. All Terraform commands
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: should now work.
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: If you ever set or change modules or backend configuration for Terraform,
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: rerun this command to reinitialize your working directory. If you forget, other
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:158: commands will detect it and remind you to do so if necessary.[0m
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 retry.go:72: terraform [get -update]
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:87: Running command terraform with args [get -update]
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 retry.go:72: terraform [apply -input=false -lock=false -auto-approve -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:54:08+02:00 command.go:87: Running command terraform with args [apply -input=false -lock=false -auto-approve -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:54:42+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Creating...[0m[0m
+TestAKSKubeConfig 2019-07-05T15:54:48+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Creation complete after 6s [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg][0m[0m
+TestAKSKubeConfig 2019-07-05T15:54:48+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Creating...[0m[0m
+TestAKSKubeConfig 2019-07-05T15:54:58+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Still creating... [10s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:04+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Creation complete after 16s [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet][0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:04+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Creating...[0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:14+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Still creating... [10s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Creation complete after 16s [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/aks-subnet][0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1m[32m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: Apply complete! Resources: 3 added, 0 changed, 0 destroyed.[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 retry.go:72: terraform [init -upgrade=false]
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:87: Running command terraform with args [init -upgrade=false]
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1mInitializing modules...[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1mInitializing the backend...[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1mInitializing provider plugins...[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: [0m[32m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: You may now begin working with Terraform. Try running "terraform plan" to see
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: any changes that are required for your infrastructure. All Terraform commands
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: should now work.
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: If you ever set or change modules or backend configuration for Terraform,
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: rerun this command to reinitialize your working directory. If you forget, other
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:158: commands will detect it and remind you to do so if necessary.[0m
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 retry.go:72: terraform [get -update]
+TestAKSKubeConfig 2019-07-05T15:55:20+02:00 command.go:87: Running command terraform with args [get -update]
+TestAKSKubeConfig 2019-07-05T15:55:21+02:00 command.go:158: - tf-ref-aks-module in ../..
+TestAKSKubeConfig 2019-07-05T15:55:21+02:00 retry.go:72: terraform [apply -input=false -lock=false -auto-approve -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:55:21+02:00 command.go:87: Running command terraform with args [apply -input=false -lock=false -auto-approve -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:55:32+02:00 command.go:158: [0m[1mmodule.tf-ref-aks-module.data.azurerm_resource_group.rg: Refreshing state...[0m
+TestAKSKubeConfig 2019-07-05T15:55:37+02:00 command.go:158: [0m[1mmodule.tf-ref-aks-module.data.azurerm_subnet.aks: Refreshing state...[0m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: [31m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: [1m[31mError: [0m[0m[1m"application_id" isn't a valid UUID (""): uuid string is wrong length[0m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: [0m  on ../../main.tf line 62, in data "azuread_service_principal" "aks":
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158:   62: data "azuread_service_principal" "aks" [4m{[0m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: [0m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:158: [0m[0m
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 retry.go:80: Returning due to fatal error: FatalError{Underlying: exit status 1}
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 retry.go:72: terraform [destroy -auto-approve -input=false -lock=false -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:55:42+02:00 command.go:87: Running command terraform with args [destroy -auto-approve -input=false -lock=false -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:55:54+02:00 command.go:158: [0m[1mmodule.tf-ref-aks-module.data.azurerm_resource_group.rg: Refreshing state...[0m
+TestAKSKubeConfig 2019-07-05T15:55:59+02:00 command.go:158: [0m[1mmodule.tf-ref-aks-module.data.azurerm_subnet.aks: Refreshing state...[0m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: [31m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: [1m[31mError: [0m[0m[1m"application_id" isn't a valid UUID (""): uuid string is wrong length[0m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: 
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: [0m  on ../../main.tf line 62, in data "azuread_service_principal" "aks":
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158:   62: data "azuread_service_principal" "aks" [4m{[0m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: [0m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:158: [0m[0m
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 retry.go:80: Returning due to fatal error: FatalError{Underlying: exit status 1}
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 retry.go:72: terraform [destroy -auto-approve -input=false -lock=false -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:56:05+02:00 command.go:87: Running command terraform with args [destroy -auto-approve -input=false -lock=false -var-file testing.tfvars]
+TestAKSKubeConfig 2019-07-05T15:56:16+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Refreshing state... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg][0m
+TestAKSKubeConfig 2019-07-05T15:56:21+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Refreshing state... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet][0m
+TestAKSKubeConfig 2019-07-05T15:56:27+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Refreshing state... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/aks-subnet][0m
+TestAKSKubeConfig 2019-07-05T15:56:41+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/aks-subnet][0m[0m
+TestAKSKubeConfig 2019-07-05T15:56:51+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...alNetworks/aks-vnet/subnets/aks-subnet, 10s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:56:58+02:00 command.go:158: [0m[1mazurerm_subnet.aks: Destruction complete after 16s[0m[0m
+TestAKSKubeConfig 2019-07-05T15:56:58+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg/providers/Microsoft.Network/virtualNetworks/aks-vnet][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:08+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...osoft.Network/virtualNetworks/aks-vnet, 10s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:14+02:00 command.go:158: [0m[1mazurerm_virtual_network.aks: Destruction complete after 16s[0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:14+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-30e957767ff3/resourceGroups/tf-ref-test-rg][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:24+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...57767ff3/resourceGroups/tf-ref-test-rg, 10s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:34+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...57767ff3/resourceGroups/tf-ref-test-rg, 20s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:44+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...57767ff3/resourceGroups/tf-ref-test-rg, 30s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:57:54+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...57767ff3/resourceGroups/tf-ref-test-rg, 40s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:58:04+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Still destroying... [id=/subscriptions/b57ad57e-1e9a-4b32-8d28-...57767ff3/resourceGroups/tf-ref-test-rg, 50s elapsed][0m[0m
+TestAKSKubeConfig 2019-07-05T15:58:04+02:00 command.go:158: [0m[1mazurerm_resource_group.rg: Destruction complete after 51s[0m[0m
+TestAKSKubeConfig 2019-07-05T15:58:04+02:00 command.go:158: [0m[1m[32m
+TestAKSKubeConfig 2019-07-05T15:58:04+02:00 command.go:158: Destroy complete! Resources: 3 destroyed.[0m
+--- FAIL: TestAKSKubeConfig (237.20s)
+    require.go:794: 
+        	Error Trace:	apply.go:14
+        	            				aks_kubeconfig_test.go:31
+        	Error:      	Received unexpected error:
+        	            	FatalError{Underlying: exit status 1}
+        	Test:       	TestAKSKubeConfig
+    destroy.go:12: 
+        	Error Trace:	destroy.go:12
+        	            				asm_amd64.s:522
+        	            				panic.go:397
+        	            				testing.go:590
+        	            				apply.go:14
+        	            				aks_kubeconfig_test.go:31
+        	Error:      	Received unexpected error:
+        	            	FatalError{Underlying: exit status 1}
+        	Test:       	TestAKSKubeConfig
+FAIL
+FAIL	github.com/jcorioland/terraform-azure-ref-aks-module/test	237.244s

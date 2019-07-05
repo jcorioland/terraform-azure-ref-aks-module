@@ -1,36 +1,50 @@
-# Pull the base image with given version.
-ARG BUILD_TERRAFORM_VERSION="0.11.7"
-FROM microsoft/terraform-test:${BUILD_TERRAFORM_VERSION}
+FROM golang:1.12.6
 
-ARG MODULE_NAME="terraform-azurerm-template"
+# Define environment variables
+ARG BUILD_TERRAFORM_VERSION="0.12.3"
+ARG BUILD_MODULE_NAME="aks-module"
+ARG BUILD_TERRAFORM_OS_ARCH=linux_amd64
+ARG BUILD_TERRATEST_LOG_PARSER_VERSION="v0.17.5"
 
-# Declare default build configurations for terraform.
-ARG BUILD_ARM_SUBSCRIPTION_ID=""
-ARG BUILD_ARM_CLIENT_ID=""
-ARG BUILD_ARM_CLIENT_SECRET=""
-ARG BUILD_ARM_TENANT_ID=""
-ARG BUILD_ARM_TEST_LOCATION="WestEurope"
-ARG BUILD_ARM_TEST_LOCATION_ALT="WestUS"
+ENV TERRAFORM_VERSION=${BUILD_TERRAFORM_VERSION}
+ENV TERRAFORM_OS_ARCH=${BUILD_TERRAFORM_OS_ARCH}
+ENV MODULE_NAME=${BUILD_MODULE_NAME}
+ENV TERRATEST_LOG_PARSER_VERSION=${BUILD_TERRATEST_LOG_PARSER_VERSION}
 
-# Set environment variables for terraform runtime.
-ENV ARM_SUBSCRIPTION_ID=${BUILD_ARM_SUBSCRIPTION_ID}
-ENV ARM_CLIENT_ID=${BUILD_ARM_CLIENT_ID}
-ENV ARM_CLIENT_SECRET=${BUILD_ARM_CLIENT_SECRET}
-ENV ARM_TENANT_ID=${BUILD_ARM_TENANT_ID}
-ENV ARM_TEST_LOCATION=${BUILD_ARM_TEST_LOCATION}
-ENV ARM_TEST_LOCATION_ALT=${BUILD_ARM_TEST_LOCATION_ALT}
-
-# Set work directory.
-RUN mkdir /go
-RUN mkdir /go/bin
-RUN mkdir /go/src
-RUN mkdir /go/src/${MODULE_NAME}
-COPY . /go/src/${MODULE_NAME}
-WORKDIR /go/src/${MODULE_NAME}
+# Update & Install tool
+RUN apt-get update && \
+    apt-get install -y build-essential unzip
 
 # Install dep.
 ENV GOPATH /go
 ENV PATH /usr/local/go/bin:$GOPATH/bin:$PATH
 RUN /bin/bash -c "curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh"
 
-RUN ["bundle", "install", "--gemfile", "./Gemfile"]
+# Install Terraform
+RUN curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${TERRAFORM_OS_ARCH}.zip && \
+    curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
+    curl -s https://keybase.io/hashicorp/pgp_keys.asc | gpg --import && \
+    curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig && \
+    gpg --verify terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
+    shasum -a 256 -c terraform_${TERRAFORM_VERSION}_SHA256SUMS 2>&1 | grep "${TERRAFORM_VERSION}_${TERRAFORM_OS_ARCH}.zip:\sOK" && \
+    unzip -o terraform_${TERRAFORM_VERSION}_${TERRAFORM_OS_ARCH}.zip -d /usr/local/bin
+
+# Cleanup
+RUN rm terraform_${TERRAFORM_VERSION}_${TERRAFORM_OS_ARCH}.zip
+RUN rm terraform_${TERRAFORM_VERSION}_SHA256SUMS
+RUN rm terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
+
+# Install Terratest Log Parser
+RUN curl -OLs https://github.com/gruntwork-io/terratest/releases/download/${TERRATEST_LOG_PARSER_VERSION}/terratest_log_parser_${TERRAFORM_OS_ARCH} && \
+    chmod +x terratest_log_parser_${TERRAFORM_OS_ARCH} && \
+    mv terratest_log_parser_${TERRAFORM_OS_ARCH} /usr/local/bin/terratest_log_parser
+
+RUN mkdir ~/.ssh
+RUN ssh-keygen -b 2048 -t rsa -f ~/.ssh/test_rsa -q -N ""
+
+# Set work directory.
+RUN mkdir /go/src/${MODULE_NAME}
+COPY . /go/src/${MODULE_NAME}
+WORKDIR /go/src/${MODULE_NAME}
+
+ENTRYPOINT [ "./run-tests.sh" ]
