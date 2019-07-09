@@ -13,7 +13,6 @@ module "tf-ref-aks-module" {
   environment                      = "Development"
   location                         = "westeurope"
   kubernetes_version               = "1.13.5"
-  ssh_public_key                   = "$file('~/.ssh/id_rsa.pub')"
   service_principal_client_id      = "CLIENT_ID"
   service_principal_client_secret  = "CLIENT_SECRET"
 }
@@ -40,10 +39,6 @@ variable "location" {
 
 variable "kubernetes_version" {
   description = "Kubernetes version to use"
-}
-
-variable "ssh_public_key" {
-  description = "The SSH public key for AKS"
 }
 
 variable "service_principal_client_id" {

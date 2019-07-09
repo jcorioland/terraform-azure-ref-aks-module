@@ -9,7 +9,3 @@ variable "location" {
 variable "kubernetes_version" {
   description = "Kubernetes version to use"
 }
-
-variable "ssh_public_key" {
-  description = "The SSH public key for AKS"
-}
