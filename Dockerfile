@@ -3,6 +3,8 @@ FROM jcorioland/azure-terratest:0.12.3
 ARG BUILD_MODULE_NAME="aks-module"
 ENV MODULE_NAME=${BUILD_MODULE_NAME}
 
+RUN ssh-keygen -b 2048 -t rsa -f ~/.ssh/testing_rsa -q -N ""
+
 # Set work directory.
 RUN mkdir /go/src/${MODULE_NAME}
 COPY . /go/src/${MODULE_NAME}
