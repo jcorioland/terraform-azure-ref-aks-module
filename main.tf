@@ -58,12 +58,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 
-data "azuread_service_principal" "aks" {
-  application_id = "${var.service_principal_client_id}"
-}
-
-resource "azurerm_role_assignment" "netcontribrole" {
-  scope                = "${data.azurerm_subnet.aks.id}"
-  role_definition_name = "Network Contributor"
-  principal_id         = "${data.azuread_service_principal.aks.object_id}"
-}
+# data "azuread_service_principal" "aks" {
+#   application_id = "${var.service_principal_client_id}"
+# }
+# 
+# resource "azurerm_role_assignment" "netcontribrole" {
+#   scope                = "${data.azurerm_subnet.aks.id}"
+#   role_definition_name = "Network Contributor"
+#   principal_id         = "${data.azuread_service_principal.aks.object_id}"
+# }
