@@ -12,7 +12,7 @@ module "tf-ref-aks-module" {
   source                           = "../../"
   environment                      = "Development"
   location                         = "westeurope"
-  kubernetes_version               = "1.13.5"
+  kubernetes_version               = "1.14.6"
   service_principal_client_id      = "CLIENT_ID"
   service_principal_client_secret  = "CLIENT_SECRET"
 }
