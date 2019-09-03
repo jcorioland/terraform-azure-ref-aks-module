@@ -1,3 +1,3 @@
 environment        = "test"
-location           = "westeurope"
+location           = "francecentral"
 kubernetes_version = "1.14.6"
