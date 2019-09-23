@@ -51,7 +51,6 @@ stages:
           -e ARM_TENANT_ID=$(ARM_TENANT_ID) \
           -v $(System.DefaultWorkingDirectory)/test_output:/go/src/aks-module/test_output \
           $(containerRegistry)/$(imageRepository):$(tag)
-        ls -all ./test_output
       displayName: Run tests in container
       env:
         SERVICE_PRINCIPAL_CLIENT_ID: $(SERVICE_PRINCIPAL_CLIENT_ID)
