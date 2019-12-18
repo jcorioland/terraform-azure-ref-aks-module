@@ -1,4 +1,4 @@
-FROM jcorioland/azure-terratest:0.12.3
+FROM jcorioland/azure-terratest:0.12.8
 
 ARG BUILD_MODULE_NAME="aks-module"
 ENV MODULE_NAME=${BUILD_MODULE_NAME}
