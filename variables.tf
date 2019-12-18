@@ -22,4 +22,3 @@ variable "ssh_public_key" {
   description = "The SSH public key to use with Azure Kubernetes Service"
 }
 
-

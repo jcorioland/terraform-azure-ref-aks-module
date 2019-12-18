@@ -1,3 +1,3 @@
 environment        = "test"
 location           = "francecentral"
-kubernetes_version = "1.14.6"
+kubernetes_version = "1.15.5"
