@@ -11,7 +11,7 @@ It is part of the reference archicture for Terraform on Azure. More details can 
 module "tf-ref-aks-module" {
   source                           = "../../"
   environment                      = "Development"
-  location                         = "francecentral"
+  ssh_public_key                   = "ssh-rsa AAAAB3NzaC1yc2EAAAA......"
   kubernetes_version               = "1.15.5"
   service_principal_client_id      = "<CLIENT_ID>"
   service_principal_client_secret  = "<CLIENT_SECRET>"
